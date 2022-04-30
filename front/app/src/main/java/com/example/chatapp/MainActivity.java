@@ -1,8 +1,11 @@
 package com.example.chatapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.widget.EditText;
 
@@ -13,9 +16,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Check if the user give the permission of read from storage, if not we ask hime
+        if (ActivityCompat
+                .checkSelfPermission
+                        (this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 10);
+        }
+
         EditText editText = findViewById(R.id.editText);
 
-        findViewById(R.id.enter_button).setOnClickListener(v ->{
+        // Set the name of the user and move to next page
+        findViewById(R.id.enter_button).setOnClickListener(v -> {
             Intent intent = new Intent(this, ChatActivity.class);
             intent.putExtra("name", editText.getText().toString());
             startActivity(intent);
