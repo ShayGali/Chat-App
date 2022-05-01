@@ -35,7 +35,9 @@ public class ChatActivity extends AppCompatActivity implements TextWatcher {
     private String name; // the name of the user
 
     private WebSocket webSocket; // the socket
-    private static final String SERVER_PATH = "ws://10.113.4.127:3000"; // the url of the server  //demo echo socket - ws://echo.websocket.org
+    private static final int SERVER_PORT = 3000;
+    private static final String SERVER_URL = "10.113.4.127";
+    private static final String SERVER_PATH = "ws://" + SERVER_URL + ":" + SERVER_PORT; // the url of the server  //demo echo socket - ws://echo.websocket.org
 
     private EditText messageEdit;  // the message input
     private View sendBtn, pickImgBtn; // the btn of sending message and image
@@ -197,6 +199,7 @@ public class ChatActivity extends AppCompatActivity implements TextWatcher {
     /**
      * send image on the socket.
      * the format will be JPEG, and the quality will be 50%
+     *
      * @param imageBitmap image in Bitmap object
      */
     private void sendImage(Bitmap imageBitmap) {
