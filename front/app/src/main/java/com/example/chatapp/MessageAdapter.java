@@ -172,7 +172,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         public ReceivedMessageHolder(@NonNull View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.name_txt);
-            messageTxt = itemView.findViewById(R.id.sent_text);
+            messageTxt = itemView.findViewById(R.id.received_text);
         }
     }
 

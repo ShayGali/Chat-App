@@ -35,7 +35,7 @@ public class ChatActivity extends AppCompatActivity implements TextWatcher {
     private String name; // the name of the user
 
     private WebSocket webSocket; // the socket
-    private static final String SERVER_PATH = "ws://echo.websocket.org"; // the url of the server  //demo echo socket - ws://echo.websocket.org
+    private static final String SERVER_PATH = "ws://10.113.4.127:3000"; // the url of the server  //demo echo socket - ws://echo.websocket.org
 
     private EditText messageEdit;  // the message input
     private View sendBtn, pickImgBtn; // the btn of sending message and image
@@ -202,7 +202,9 @@ public class ChatActivity extends AppCompatActivity implements TextWatcher {
     private void sendImage(Bitmap imageBitmap) {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         imageBitmap.compress(Bitmap.CompressFormat.JPEG, 50, outputStream);
-        String base64String = Base64.encodeToString(outputStream.toByteArray(), Base64.DEFAULT);  // Base64 from android.util
+
+        String base64String = Base64.encodeToString(outputStream.toByteArray(),
+                Base64.DEFAULT);  // Base64 from android.util
 
         JSONObject jsonObject = new JSONObject();
         try {
